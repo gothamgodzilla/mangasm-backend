@@ -1,0 +1,38 @@
+# Supabase CLI project config.
+# Reference: https://supabase.com/docs/guides/cli/config
+project_id = "mangasm"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+# The app uses phone OTP + Apple/Google/Twitter OAuth (PKCE).
+site_url = "mangasm://auth/callback"
+additional_redirect_urls = ["mangasm://auth/callback"]
+jwt_expiry = 3600
+enable_signup = true
+
+[auth.external.apple]
+enabled = false   # set true and add secrets via env for real OAuth
+
+[auth.external.google]
+enabled = false
+
+[auth.external.twitter]
+enabled = false
+
+[edge_runtime]
+enabled = true

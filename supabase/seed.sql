@@ -1,0 +1,27 @@
+-- ============================================================================
+-- Mangasm — local dev seed (optional)
+-- Loaded automatically by `supabase db reset` for the LOCAL stack only.
+-- Do NOT run against production.
+--
+-- These rows reference auth.users ids that must already exist. The simplest
+-- path for local testing is to create users via the local Studio Auth tab,
+-- copy their ids in here, then re-run. Left intentionally minimal.
+-- ============================================================================
+
+-- Example (uncomment and replace the uuids with real local auth user ids):
+--
+-- update public.profiles set
+--   handle = 'inkwolf', display_name = 'Wolf', membership = 'plus',
+--   is_verified = true, status = 'online',
+--   tags = array['leather','tattoo','pup'],
+--   location = st_makepoint(-118.49, 34.01)::geography  -- Santa Monica-ish
+-- where id = '00000000-0000-0000-0000-000000000001';
+--
+-- insert into public.events (host_id, title, type, content, starts_at, location, address)
+-- values (
+--   '00000000-0000-0000-0000-000000000001',
+--   'Naked Yoga — Sunday Reset', 'naked_yoga', 'adult',
+--   now() + interval '2 days',
+--   st_makepoint(-118.49, 34.01)::geography,
+--   'Address revealed 2h before start'
+-- );
