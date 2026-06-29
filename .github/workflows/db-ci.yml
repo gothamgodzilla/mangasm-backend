@@ -1,0 +1,58 @@
+name: db-ci
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "supabase/migrations/**"
+      - "supabase/tests/**"
+      - ".github/workflows/db-ci.yml"
+  pull_request:
+    paths:
+      - "supabase/migrations/**"
+      - "supabase/tests/**"
+      - ".github/workflows/db-ci.yml"
+
+jobs:
+  migrations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Postgres 16 + PostGIS + pgvector
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            postgresql-16 postgresql-16-postgis-3 postgresql-16-pgvector
+
+      - name: Start a throwaway cluster
+        run: |
+          export PGBIN=/usr/lib/postgresql/16/bin
+          export PGDATA="$RUNNER_TEMP/pgdata"
+          sudo useradd -m pgci || true
+          sudo mkdir -p "$PGDATA" && sudo chown -R pgci "$PGDATA"
+          sudo -u pgci "$PGBIN/initdb" -D "$PGDATA" -U pgci -A trust
+          sudo -u pgci "$PGBIN/pg_ctl" -D "$PGDATA" \
+            -o "-p 5433 -k /tmp" -l "$RUNNER_TEMP/pg.log" start
+          sleep 2
+
+      - name: Apply shim + migrations
+        run: |
+          psql -h /tmp -p 5433 -U pgci -d postgres -v ON_ERROR_STOP=1 \
+            -f supabase/tests/shim.sql
+          for f in supabase/migrations/*.sql; do
+            echo "=== applying $f ==="
+            psql -h /tmp -p 5433 -U pgci -d postgres -v ON_ERROR_STOP=1 -f "$f"
+          done
+
+      - name: Run smoke test
+        run: |
+          psql -h /tmp -p 5433 -U pgci -d postgres -v ON_ERROR_STOP=1 \
+            -f supabase/tests/ci_smoke.sql
+
+      - name: Idempotency - re-apply migrations
+        run: |
+          for f in supabase/migrations/*.sql; do
+            psql -h /tmp -p 5433 -U pgci -d postgres -v ON_ERROR_STOP=1 -f "$f" >/dev/null
+          done
+          echo "re-apply clean"
