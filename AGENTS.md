@@ -15,10 +15,10 @@
 
 | Venture | Domain | What it is | Tier |
 |---------|--------|-----------|------|
-| **Helping.LLC** | Helping.LLC | Handyman/task service, needs customers | 🟢 fastest revenue |
+| **Luxury Mastermind AI Ecosystem Builder** | Ganesh.guru (demo) + slay.llc (outreach) | Productized AI agency: scrape a business → auto-build its AI ecosystem → sell turnkey $499/$1499+ | ⭐ KEYSTONE |
+| **Helping.LLC** | Helping.LLC | Handyman/task service, needs customers; template guinea pig | 🟢 fastest revenue |
 | **Mangasm** | Mangasm.app | 18+ LGBTQ+ social/dating (Supabase, this repo) | 🟢 built |
-| **Nostalgia** | Nostalgia.sh | AI astrology life-coach; Ganesh.Guru = avatar | 🟢 shippable |
-| **slay.llc** | slay.llc | Email pitch-deck / outreach engine | 🟡 support |
+| **Nostalgia** | Nostalgia.sh | AI astrology life-coach (animated Ganesh persona) | 🟢 shippable |
 | **Rambo INK** | rambo.ink | Autonomous tattoo booth, robot arm + artist | 🔴 moonshot |
 | **Diabolic** | — | Original dark ARPG in Unreal (see legal note) | 🔴 moonshot |
 
