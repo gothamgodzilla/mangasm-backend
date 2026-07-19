@@ -11,14 +11,18 @@
 - **This repo:** `gothamgodzilla/mangasm-backend` — the Supabase data + server
   layer for Mangasm. See `README.md` and `MANGASM_MAP.md` for specifics.
 
-## The empire (4 brands)
+## The empire (6 ventures)
 
-| Brand | What it is | Status in this repo |
-|-------|-----------|--------------------|
-| **Mangasm** | 18+ LGBTQ+ social/dating app (live map, events, DMs, MGC token wallet, video rooms, matchmaking) on Supabase | Fully described here |
-| **Diabolic** | _TBD — owner to confirm_ | Not in this repo yet |
-| **Nostalgia** | _TBD — owner to confirm_ | Not in this repo yet |
-| **Rambo INK** | _TBD — owner to confirm_ | Not in this repo yet |
+| Venture | Domain | What it is | Tier |
+|---------|--------|-----------|------|
+| **Helping.LLC** | Helping.LLC | Handyman/task service, needs customers | 🟢 fastest revenue |
+| **Mangasm** | Mangasm.app | 18+ LGBTQ+ social/dating (Supabase, this repo) | 🟢 built |
+| **Nostalgia** | Nostalgia.sh | AI astrology life-coach; Ganesh.Guru = avatar | 🟢 shippable |
+| **slay.llc** | slay.llc | Email pitch-deck / outreach engine | 🟡 support |
+| **Rambo INK** | rambo.ink | Autonomous tattoo booth, robot arm + artist | 🔴 moonshot |
+| **Diabolic** | — | Original dark ARPG in Unreal (see legal note) | 🔴 moonshot |
+
+Full per-venture plans, priority, and Grok prompts: **`docs/EMPIRE.md`**.
 
 Full strategy, tool choices, and starter tasks live in **`docs/EMPIRE.md`**.
 
