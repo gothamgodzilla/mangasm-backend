@@ -1,0 +1,49 @@
+{
+  "project": "mangasm-backend",
+  "kind": "supabase-backend",
+  "generated": "2026-07-19",
+  "path": "/Users/babe/mangasm-backend",
+  "remote": "gothamgodzilla/mangasm-backend",
+  "role": "database_and_edge_source_of_truth",
+  "entry_points": {
+    "migrations": "supabase/migrations/",
+    "functions": "supabase/functions/",
+    "ci": ".github/workflows/db-ci.yml",
+    "architecture": "docs/ARCHITECTURE.md"
+  },
+  "migrations": [
+    "0001_initial_schema.sql",
+    "0002_rls_policies.sql",
+    "0003_tokens.sql",
+    "0004_video_rooms.sql",
+    "0005_matchmaking.sql"
+  ],
+  "edge_functions": [
+    "recalculate-score",
+    "file-report",
+    "generate-daily-matches",
+    "delete-account"
+  ],
+  "entities": [
+    "profiles",
+    "privacy_zones",
+    "events",
+    "event_rsvps",
+    "messages",
+    "blocks",
+    "reports",
+    "vouches",
+    "reputation_scores",
+    "tokens",
+    "video_rooms",
+    "matchmaking"
+  ],
+  "tests": ["supabase/tests/ci_smoke.sql", "supabase/tests/shim.sql"],
+  "gaps": [
+    "iOS client Chat still mock despite messages schema",
+    "migration set may diverge from Mangasm iOS repo supabase/",
+    "edge deploy + secrets required for live delete-account / reports"
+  ],
+  "related_ios": "/Users/babe/dev/mangasm/Mangasm",
+  "token_note": "Prefer this index over full tree reads"
+}
