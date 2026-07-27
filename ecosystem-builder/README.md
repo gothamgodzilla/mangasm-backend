@@ -32,14 +32,30 @@ Output (example shape):
 }
 ```
 
+## Step 3 — GENERATE the demo chatbot (the "wow")
+
+`generate-ecosystem.mjs` turns the research JSON into a **personalized, hostable
+demo** — a self-contained `demo.html` you can put on Ganesh.guru per prospect,
+plus a `spec.json` (system prompt + FAQ + greeting) to drop into Dify/AnythingLLM.
+
+```bash
+node --env-file=.env research-business.mjs "Joe's Plumbing" "joesplumbing.com" > joe.json
+node --env-file=.env generate-ecosystem.mjs joe.json ./out/joe
+# -> ./out/joe/spec.json  and  ./out/joe/demo.html   (open demo.html in a browser)
+```
+
+The demo's answers are **pre-baked** from the research, so `demo.html` runs with
+no live API key — safe to host and share. Uses Grok by default (set `LLM_*` in
+`.env`); point `LLM_BASE_URL`/`LLM_MODEL` at Perplexity or OpenAI to reuse a key.
+
 ## Where it fits
 
 ```
-SOURCE (registry)  ->  [ ENRICH: this script ]  ->  GENERATE demo  ->  PITCH (slay.llc)
+SOURCE (registry) -> [ ENRICH: research-business ] -> [ GENERATE: generate-ecosystem ] -> PITCH (slay.llc) -> DEMO (Ganesh.guru)
 ```
 
 Feed `suggested_pitch_angle` + `personalization_hooks` into the cold email, and
-`gaps` into which demo engine you auto-build (chatbot / booking / follow-up).
+link the prospect to their `demo.html`.
 
 ## Notes
 - Requires Node 20+ (for `--env-file`). Node 18/19: load the env yourself or use `dotenv`.

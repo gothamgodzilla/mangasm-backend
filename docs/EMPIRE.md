@@ -138,9 +138,12 @@ screenshotted tools ARE the "engines" you resell.
 
 - **Build once, sell many:** build the template ecosystem for ONE vertical first
   (use **Helping.LLC** as the guinea pig), then clone per prospect.
-- **ENRICH step is runnable:** [`ecosystem-builder/research-business.mjs`](../ecosystem-builder/research-business.mjs)
-  researches a business via Perplexity → returns gaps + personalization hooks +
-  a pitch angle. Key lives in a gitignored `.env` (never in chat/git).
+- **ENRICH + GENERATE steps are runnable:**
+  [`research-business.mjs`](../ecosystem-builder/research-business.mjs) (Perplexity)
+  → gaps + hooks + pitch angle; then
+  [`generate-ecosystem.mjs`](../ecosystem-builder/generate-ecosystem.mjs) (Grok)
+  → a personalized `demo.html` (hostable on Ganesh.guru) + `spec.json` for
+  Dify/AnythingLLM. Keys live in a gitignored `.env`.
 - **First task:** manually run the pipeline for ONE real business — scrape it,
   build a demo chatbot loaded with its public info, host on Ganesh.guru, send one
   compliant email. Prove the close before automating the factory.
