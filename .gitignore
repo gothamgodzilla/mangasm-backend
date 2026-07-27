@@ -1,0 +1,14 @@
+# Secrets — NEVER commit these
+.env
+.env.local
+*.env
+!.env.example
+ecosystem-builder/.env
+
+# Supabase local
+supabase/.env.local
+supabase/.branches
+supabase/.temp
+
+# Node
+node_modules/
