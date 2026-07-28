@@ -28,12 +28,13 @@ jobs:
       - name: Start a throwaway cluster
         run: |
           export PGBIN=/usr/lib/postgresql/16/bin
-          export PGDATA="$RUNNER_TEMP/pgdata"
+          # /tmp, not $RUNNER_TEMP: pgci cannot traverse /home/runner/work/_temp
+          export PGDATA=/tmp/pgdata
           sudo useradd -m pgci || true
           sudo mkdir -p "$PGDATA" && sudo chown -R pgci "$PGDATA"
           sudo -u pgci "$PGBIN/initdb" -D "$PGDATA" -U pgci -A trust
           sudo -u pgci "$PGBIN/pg_ctl" -D "$PGDATA" \
-            -o "-p 5433 -k /tmp" -l "$RUNNER_TEMP/pg.log" start
+            -o "-p 5433 -k /tmp" -l /tmp/pg.log start
           sleep 2
 
       - name: Apply shim + migrations
