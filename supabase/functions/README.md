@@ -10,6 +10,7 @@ Deno-based Supabase Edge Functions. Each folder is one deployable function.
 | `delete-account`         | GDPR / App Store account deletion (cascade purge)              | client (authed)      |
 | `stripe-checkout`        | Create a Mangasm+ Checkout Session (see `docs/REVENUE.md`)     | client (authed)      |
 | `stripe-webhook`         | Stripe subscription lifecycle → `billing_subscriptions`        | Stripe (signed)      |
+| `revenue-metrics`        | MRR / failed-payments snapshot for `/admin/revenue`            | dashboard (token)    |
 
 ## Stubs to add as the product grows
 
