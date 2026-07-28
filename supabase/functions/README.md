@@ -8,6 +8,8 @@ Deno-based Supabase Edge Functions. Each folder is one deployable function.
 | `file-report`            | File a report and apply the 2-hour spite-report `timing_flag`  | client (authed)      |
 | `generate-daily-matches` | Up to 5 scored daily matches per Plus member                   | cron + on-demand     |
 | `delete-account`         | GDPR / App Store account deletion (cascade purge)              | client (authed)      |
+| `stripe-checkout`        | Create a Mangasm+ Checkout Session (see `docs/REVENUE.md`)     | client (authed)      |
+| `stripe-webhook`         | Stripe subscription lifecycle → `billing_subscriptions`        | Stripe (signed)      |
 
 ## Stubs to add as the product grows
 
