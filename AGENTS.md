@@ -24,6 +24,20 @@
 
 Full per-venture plans, priority, and Grok prompts: **`docs/EMPIRE.md`**.
 
+## The agent crew (`.claude/agents/`)
+
+Named workers, one job each — dispatch by name (GANESH-orchestrator pattern):
+
+| Agent | Job | Hard limit |
+|-------|-----|-----------|
+| **ganesh** | Orchestrator: plans, dispatches, holds approval gates | Stops at Tier 3 (public/financial/outreach) until owner approves |
+| **scout** | Research: prospects, markets, pricing, competitors | Gathers only; never contacts anyone |
+| **forge** | Builder: demos, spec.json, generated artifacts | Local builds only; hosting/deploying = Tier 3 |
+| **herald** | Pitch/outreach drafts (slay.llc) | DRAFTS only; never sends; CAN-SPAM-shaped by default |
+| **warden** | Mangasm trust & safety analysis | Recommends actions; never bans/deletes itself |
+| **oracle** | Nostalgia daily readings (soul layer) | Interprets computed facts; never calculates astrology |
+| **ledger** | Metrics, $349/day target, run-record hygiene | Never touches real balances or the private net-worth file |
+
 Full strategy, tool choices, and starter tasks live in **`docs/EMPIRE.md`**.
 
 ## Operating rules for AI agents
