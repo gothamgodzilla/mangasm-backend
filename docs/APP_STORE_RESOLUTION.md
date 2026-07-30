@@ -46,7 +46,7 @@ subtitle/description lead with *map + events + safety*, not "dating/matching."
 
 ## Guideline 1.2 — Safety · User-Generated Content  🟢 (code shipped)
 
-Backend support is implemented in `supabase/migrations/0006_ugc_safety.sql`.
+Backend support is implemented in `supabase/migrations/0008_ugc_safety.sql`.
 Reply once the iOS app wires the two UI pieces (EULA gate + report/block
 buttons):
 
