@@ -1,0 +1,15 @@
+# Real secrets live in `supabase secrets set` (hosted) or supabase/.env.local
+# (local serve) — never in git. Only the .env.example template is tracked.
+.env
+.env.*
+!.env.example
+supabase/.env
+supabase/.env.*
+
+# Supabase CLI local state
+supabase/.temp/
+supabase/.branches/
+
+# Editor/OS noise
+.DS_Store
+*.swp
