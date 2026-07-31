@@ -78,11 +78,17 @@ Deno.serve(async (req) => {
       .insert({ user_id: user.id, stripe_customer_id: customerId });
   }
 
+  // Optional: pin Checkout to a Stripe payment method configuration (pmc_…).
+  // Account-scoped, so it lives in an env var — the sandbox and live accounts
+  // have different pmc ids.
+  const pmc = Deno.env.get("STRIPE_PAYMENT_METHOD_CONFIGURATION");
+
   const session = await stripe.checkout.sessions.create({
     mode: "subscription",
     customer: customerId,
     line_items: [{ price, quantity: 1 }],
     allow_promotion_codes: true,
+    ...(pmc ? { payment_method_configuration: pmc } : {}),
     success_url: Deno.env.get("CHECKOUT_SUCCESS_URL") ?? "https://mangasm.app/plus/success",
     cancel_url: Deno.env.get("CHECKOUT_CANCEL_URL") ?? "https://mangasm.app/plus",
     subscription_data: { metadata: { mangasm_user_id: user.id } },

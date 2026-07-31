@@ -49,6 +49,8 @@ growth decisions.
       mangasm.app/terms, /privacy) before applying.
 - [ ] Recreate the product + 2 prices in live mode (copy of the sandbox ones).
 - [ ] `supabase secrets set STRIPE_SECRET_KEY=sk_live_… STRIPE_WEBHOOK_SECRET=whsec_… STRIPE_PRICE_MONTHLY=… STRIPE_PRICE_QUARTERLY=…`
+- [ ] Optionally `supabase secrets set STRIPE_PAYMENT_METHOD_CONFIGURATION=pmc_1TzDn3GpGI5q6iax9F2fgaov`
+      (the live account's payment-method configuration; skip in sandbox — pmc ids are account-scoped).
 - [ ] `supabase db push` (applies `0007_billing.sql`)
 - [ ] `supabase functions deploy stripe-checkout` and
       `supabase functions deploy stripe-webhook --no-verify-jwt`
