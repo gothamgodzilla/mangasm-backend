@@ -24,11 +24,16 @@ supabase/
     0003_tokens.sql           # MGC wallets + ledger (balance synced by trigger)
     0004_video_rooms.sql      # 4-8 person rooms + participants (Daily.co)
     0005_matchmaking.sql      # Plus matchmaking: prefs, pgvector taste, results
+    0006_purge_conversation.sql  # block/report DM purge RPC
+    0007_billing.sql          # Mangasm+ billing tables + membership sync trigger
   functions/
     recalculate-score/        # reputation scoring
     file-report/              # report + spite-report shield
     generate-daily-matches/   # 5 daily matches per Plus member
     delete-account/           # GDPR / App Store account deletion
+    stripe-checkout/          # member → Stripe-hosted Checkout session
+    stripe-webhook/           # Stripe → billing_subscriptions (signature-verified)
+    revenue-metrics/          # owner-only snapshot for /admin/revenue
     _shared/cors.ts
   tests/
     shim.sql                  # Supabase auth/uid/roles shim for testing
@@ -128,3 +133,35 @@ What was **not** validated here: Supabase-specific runtime behaviour — real
 `auth.uid()` under a logged-in JWT, the actual RLS allow/deny decisions per role,
 Realtime, and the Deno edge functions. Apply against a staging Supabase project
 and exercise those before promoting to production.
+
+## Go-live status (2026-07-31)
+
+Everything below is **deployed and live** against project `hcpzbxplnkyythzwkovy`:
+
+- Project restored from pause; all migrations applied through **`0007_billing.sql`**
+  (billing tables + membership-sync trigger; `0006` purge RPC included).
+- Edge functions **ACTIVE**: `stripe-checkout` (JWT-verified),
+  `stripe-webhook` + `revenue-metrics` (deployed `--no-verify-jwt`; auth is the
+  Stripe signature / `x-admin-token` respectively), plus the pre-existing
+  `delete-account`.
+- Web: `mangasm.app/plus` has the anon key wired in and calls `stripe-checkout`
+  directly; `mangasm.app/admin/revenue` reads `revenue-metrics`.
+- iOS build 1.1.0 (20) submitted to App Review (expedited review requested).
+
+### Remaining before the first real charge
+
+1. **Function secrets** (dashboard → Edge Functions → Secrets, or
+   `supabase secrets set …`):
+   `STRIPE_SECRET_KEY` (sk_live_…), `STRIPE_WEBHOOK_SECRET`,
+   `STRIPE_PRICE_MONTHLY`, `STRIPE_PRICE_QUARTERLY`,
+   `STRIPE_PAYMENT_METHOD_CONFIGURATION` (live pmc, see `docs/REVENUE.md`),
+   `ADMIN_DASHBOARD_TOKEN` (any long random string; same value goes in the
+   /admin/revenue settings panel).
+2. **Stripe webhook endpoint** →
+   `https://hcpzbxplnkyythzwkovy.supabase.co/functions/v1/stripe-webhook`
+   with `customer.subscription.created/updated/deleted` +
+   `invoice.payment_failed`.
+3. **Live product + prices** — recreate the two sandbox prices in live mode and
+   put their ids in the secrets above.
+
+Full runbook with the dunning/retry settings: [`docs/REVENUE.md`](docs/REVENUE.md).
