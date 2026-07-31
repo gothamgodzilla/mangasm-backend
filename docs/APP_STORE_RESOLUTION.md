@@ -91,7 +91,7 @@ tracking" — then say so in the reply.
 ---
 
 ## Submit order
-1. Ship the iOS EULA gate + report/block UI (uses the 0006 backend).
+1. Ship the iOS EULA gate + report/block UI (uses the 0008 backend).
 2. Flip the 2.3.6 Advertising answer + App Privacy (5.1.2) in App Store Connect.
 3. Reply to all guidelines in one Resolution Center message, **leading with the
    4.3(b) differentiation** above.
