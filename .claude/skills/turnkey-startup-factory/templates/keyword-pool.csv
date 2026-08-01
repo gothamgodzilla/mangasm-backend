@@ -1,0 +1,24 @@
+keyword,type,priority,active,notes
+local business,market,5,true,Initial B2B niche
+frontline teams,market,4,true,Distributed operational workforce
+pet owners,market,3,true,Consumer recurring-purchase segment
+inclusive community,market,4,true,Privacy and trust are mandatory
+missed calls,pain,5,true,Revenue leakage and slow response
+compliance training,pain,4,true,Frequent and measurable requirement
+care coordination,pain,4,true,High-friction scheduling and communication
+safe connection,pain,4,true,Trust and moderation are core
+voice AI,delivery,5,true,Use disclosure and consent controls
+microlearning,delivery,4,true,Short guided lessons
+personalized recommendations,delivery,3,true,Explain data inputs and privacy
+community events,delivery,3,true,Start with one city or niche
+subscription,model,5,true,Recurring revenue
+usage based,model,3,true,Align price to delivered value
+managed service,model,4,true,Useful for manual-first validation
+privacy first,differentiator,5,true,Minimize data collection
+dark,theme,2,true,Premium and cinematic
+light,theme,3,true,Clean and trusted
+rainbow,theme,3,true,Expressive and inclusive
+pastel cotton candy,theme,2,true,Friendly and playful
+regulated medical advice,excluded,5,false,Do not select without specialist scope
+unlicensed financial advice,excluded,5,false,Do not select
+surveillance without consent,excluded,5,false,Reject
